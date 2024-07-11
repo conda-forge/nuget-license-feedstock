@@ -5,11 +5,21 @@ set -o xtrace -o nounset -o pipefail -o errexit
 mkdir -p ${PREFIX}/libexec/${PKG_NAME}
 
 framework_version="$(dotnet --version | sed -e 's/\..*//g').0"
-sed -i "s?<TargetFrameworks>.*</TargetFrameworks>?<TargetFrameworks>net${framework_version}</TargetFrameworks>?" \
-     src/NuGetUtility/NuGetUtility.csproj
 
 # Build package with dotnet build
 dotnet publish --no-self-contained src/NuGetUtility/NuGetUtility.csproj --output ${PREFIX}/libexec/${PKG_NAME} --framework net${framework_version}
+
+tee ${PREFIX}/libexec/${PKG_NAME}/NuGetUtility.runtimeconfig.json << EOF
+{
+  "runtimeOptions": {
+    "tfm": "net${framework_version}",
+    "framework": {
+      "name": "Microsoft.NETCore.App",
+      "version": "${framework_version}.0"
+    }
+  }
+}
+EOF
 
 mkdir -p ${PREFIX}/bin
 rm -rf ${PREFIX}/libexec/${PKG_NAME}/NuGetUtility
@@ -17,7 +27,7 @@ rm -rf ${PREFIX}/libexec/${PKG_NAME}/NuGetUtility
 # Create bash and batch wrappers for dotnet-project-licenses
 tee ${PREFIX}/bin/dotnet-project-licenses << EOF
 #!/bin/sh
-DOTNET_ROOT=${DOTNET_ROOT} exec ${DOTNET_ROOT}/dotnet exec ${PREFIX}/libexec/${PKG_NAME}/NuGetUtility.dll "\$@"
+exec \${DOTNET_ROOT}/dotnet exec %CONDA_PREFIX%/libexec/nuget-license/NuGetUtility.dll "\$@"
 EOF
 
 tee ${PREFIX}/bin/dotnet-project-licenses.cmd << EOF
