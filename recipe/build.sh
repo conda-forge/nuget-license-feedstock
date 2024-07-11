@@ -27,7 +27,7 @@ rm -rf ${PREFIX}/libexec/${PKG_NAME}/NuGetUtility
 # Create bash and batch wrappers for dotnet-project-licenses
 tee ${PREFIX}/bin/dotnet-project-licenses << EOF
 #!/bin/sh
-exec \${DOTNET_ROOT}/dotnet exec \${CONDA_PREFIX}/libexec/nuget-license/NuGetUtility.dll "\$@"
+exec ${DOTNET_ROOT}/dotnet exec ${PREFIX}/libexec/nuget-license/NuGetUtility.dll "\$@"
 EOF
 
 tee ${PREFIX}/bin/dotnet-project-licenses.cmd << EOF
