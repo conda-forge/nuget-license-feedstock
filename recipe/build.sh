@@ -5,6 +5,8 @@ set -o xtrace -o nounset -o pipefail -o errexit
 mkdir -p ${PREFIX}/libexec/${PKG_NAME}
 
 framework_version="$(dotnet --version | sed -e 's/\..*//g').0"
+sed -i "s?<TargetFrameworks>.*</TargetFrameworks>?<TargetFrameworks>net${framework_version}</TargetFrameworks>?" \
+     src/NuGetUtility/NuGetUtility.csproj
 
 # Build package with dotnet build
 dotnet publish --no-self-contained src/NuGetUtility/NuGetUtility.csproj --output ${PREFIX}/libexec/${PKG_NAME} --framework net${framework_version}
