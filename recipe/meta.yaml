@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/sensslen/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: b4b3353fd80508b7741d610ac32f593f16a6c0a044119bc0ae3cdb0c00a62a5e
+  sha256: 0bb9a4dd5ccfbba8255f06efc5ef36e011505f2ab6a9b98cd468087a8187e630
 
 build:
   noarch: generic
