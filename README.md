@@ -3,13 +3,13 @@ About nuget-license-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/nuget-license-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/tomchavakis/nuget-license
+Home: https://github.com/sensslen/nuget-license
 
 Package license: Apache-2.0
 
 Summary: .NET Core tool to print or save all the licenses of a project
 
-Development: https://github.com/tomchavakis/nuget-license
+Development: https://github.com/sensslen/nuget-license
 
 Current build status
 ====================
