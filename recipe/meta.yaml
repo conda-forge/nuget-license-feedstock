@@ -1,5 +1,5 @@
 {% set name = "nuget-license" %}
-{% set version = "3.0.8" %}
+{% set version = "3.0.9" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/sensslen/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 04aac634f9da5cf6a820d003224235bf8531f4b158dad04c967cbdc7b76e6296
+  sha256: 611926dd38a33265261847fc530b6771b48ab45461c4c49b667da9e7d9ea2029
 
 build:
   noarch: generic
