@@ -1,17 +1,17 @@
-{% set name = "nuget-license" %}
-{% set version = "3.0.13" %}
+context:
+  version: 3.0.13
 
 package:
-  name: {{ name|lower }}
-  version: "{{ version.replace('-', '_') }}"
+  name: nuget-license
+  version: ${{ version }}
 
 source:
-  url: https://github.com/sensslen/{{ name }}/archive/v{{ version }}.tar.gz
+  url: https://github.com/sensslen/nuget-license/archive/v${{ version }}.tar.gz
   sha256: 8b0bcfb0814f5a8007e79ea0e8f2bf909c48962712ea7934c316689a008d1c7c
 
 build:
-  noarch: generic
   number: 0
+  noarch: generic
 
 requirements:
   build:
@@ -21,18 +21,18 @@ requirements:
   run:
     - dotnet
 
-test:
-  commands:
-    - dotnet-project-licenses --help
+tests:
+  - script:
+      - dotnet-project-licenses --help
 
 about:
-  home: https://github.com/sensslen/{{ name }}
   license: Apache-2.0
   license_file:
     - LICENSE
     - license-files/
   summary: .NET Core tool to print or save all the licenses of a project
-  dev_url: https://github.com/sensslen/{{ name }}
+  homepage: https://github.com/sensslen/nuget-license
+  repository: https://github.com/sensslen/nuget-license
 
 extra:
   recipe-maintainers:

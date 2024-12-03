@@ -2,7 +2,9 @@
 
 set -o xtrace -o nounset -o pipefail -o errexit
 
+mkdir -p ${PREFIX}/bin
 mkdir -p ${PREFIX}/libexec/${PKG_NAME}
+ln -sf ${DOTNET_ROOT}/dotnet ${PREFIX}/bin
 
 framework_version="$(dotnet --version | sed -e 's/\..*//g').0"
 
@@ -17,6 +19,7 @@ tee ${PREFIX}/bin/dotnet-project-licenses << EOF
 #!/bin/sh
 exec ${DOTNET_ROOT}/dotnet exec ${PREFIX}/libexec/nuget-license/NuGetLicenseCore.dll "\$@"
 EOF
+chmod +x ${PREFIX}/bin/dotnet-project-licenses
 
 tee ${PREFIX}/bin/dotnet-project-licenses.cmd << EOF
 call %DOTNET_ROOT%\dotnet exec %CONDA_PREFIX%\libexec\nuget-license\NuGetLicenseCore.dll %*
