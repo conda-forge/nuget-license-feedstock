@@ -28,3 +28,5 @@ EOF
 # Use newly build dotnet-project-licenses to get dependency licenses for this project.
 chmod +x ${PREFIX}/bin/dotnet-project-licenses
 ${PREFIX}/bin/dotnet-project-licenses --input ${SRC_DIR}/src/NuGetLicenseCore/NuGetLicenseCore.csproj -t -d license-files
+
+rm ${PREFIX}/bin/dotnet
