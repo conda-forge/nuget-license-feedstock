@@ -4,7 +4,7 @@
 
 [project]
 name = "nuget-license-feedstock"
-version = "3.44.9"
+version = "3.45.4"
 description = "Pixi configuration for conda-forge/nuget-license-feedstock"
 authors = ["@conda-forge/nuget-license"]
 channels = ["conda-forge"]
