@@ -6,6 +6,7 @@ mkdir -p ${PREFIX}/bin
 mkdir -p ${PREFIX}/libexec/${PKG_NAME}
 ln -sf ${DOTNET_ROOT}/dotnet ${PREFIX}/bin
 
+rm -rf global.json
 framework_version="$(dotnet --version | sed -e 's/\..*//g').0"
 
 # Build package with dotnet build
