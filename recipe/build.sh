@@ -13,17 +13,17 @@ framework_version="$(dotnet --version | sed -e 's/\..*//g').0"
 dotnet publish --no-self-contained ${SRC_DIR}/src/NuGetLicenseCore/NuGetLicenseCore.csproj --configuration Release --output ${PREFIX}/libexec/${PKG_NAME} --framework net${framework_version}
 
 mkdir -p ${PREFIX}/bin
-rm -rf ${PREFIX}/libexec/${PKG_NAME}/NuGetLicenseCore
+rm -rf ${PREFIX}/libexec/${PKG_NAME}/nuget-license
 
 # Create bash and batch wrappers for dotnet-project-licenses
 tee ${PREFIX}/bin/dotnet-project-licenses << EOF
 #!/bin/sh
-exec ${DOTNET_ROOT}/dotnet exec ${PREFIX}/libexec/nuget-license/NuGetLicenseCore.dll "\$@"
+exec ${DOTNET_ROOT}/dotnet exec ${PREFIX}/libexec/nuget-license/nuget-license.dll "\$@"
 EOF
 chmod +x ${PREFIX}/bin/dotnet-project-licenses
 
 tee ${PREFIX}/bin/dotnet-project-licenses.cmd << EOF
-call %DOTNET_ROOT%\dotnet exec %CONDA_PREFIX%\libexec\nuget-license\NuGetLicenseCore.dll %*
+call %DOTNET_ROOT%\dotnet exec %CONDA_PREFIX%\libexec\nuget-license\nuget-license.dll %*
 EOF
 
 # Use newly build dotnet-project-licenses to get dependency licenses for this project.
