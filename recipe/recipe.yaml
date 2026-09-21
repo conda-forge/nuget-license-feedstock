@@ -1,5 +1,5 @@
 context:
-  version: "4.0.16"
+  version: "4.0.18"
 
 package:
   name: nuget-license
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/sensslen/nuget-license/archive/v${{ version }}.tar.gz
-  sha256: af38b2d46a4dfa0068bbbc32948dcdbb10a5153668b1024774fb7e41e6d4656b
+  sha256: 6d0f987ea32920a7325112778779786ebfa159158903cd4736bb8c65b54862c1
 
 build:
   number: 0
